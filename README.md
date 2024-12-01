@@ -18,31 +18,6 @@
 **Task Management**: Task organization and tracking features
 **Mood Tracking**: Graph-based visualization of mood patterns
 
-## **Getting Started**
-
-Here’s a more concise version of the **README** for your Therapy AI app:
-
----
-
-# **Therapy AI App**
-
-**Therapy AI** is a web application to help users improve their mental health. It offers daily reflections, mood tracking, task management, and personalized chats with an AI therapist. The app is designed to create a calming and supportive environment for users.
-
-## **Features**
-
-- **Daily Thought**: Motivational thoughts appear on each visit to encourage mindfulness.
-- **Chat with AI**: Interact with an empathetic AI therapist for personalized support.
-- **Task Management**: Organize tasks to reduce stress and stay productive.
-- **Mood Tracking**: Visualize your mood over time with a mood graph.
-- **Soft Vibes Interface**: A soothing design with a calming layout for relaxation.
-
-## **Tech Stack**
-
-- **Frontend**: HTML, CSS, Bootstrap
-- **Backend**: Django (Python)
-- **AI**: Hugging Face Transformers models
-- **Task Management**: Task organization and tracking features
-- **Mood Tracking**: Graph-based visualization of mood patterns
 
 ## **Installation**
 
