@@ -1,0 +1,1 @@
+All data required for trining and testing model is stored here.
