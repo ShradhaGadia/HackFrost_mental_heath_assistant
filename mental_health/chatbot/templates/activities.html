@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .activity-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .activity-item {
+            margin: 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .activity-item a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .activity-item a:hover {
+            color: #0056b3;
+        }
+
+        .steps {
+            display: none; /* Initially hide steps */
+            padding-left: 20px;
+            margin-top: 10px;
+            list-style-type: decimal;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tasks to lighten mood</h1>
+        <ul class="activity-list">
+            {% for activity, steps in activities.items %}
+                <li class="activity-item">
+                    <a href="javascript:void(0)" onclick="toggleSteps('{{ activity }}')">{{ activity }}</a>
+                    <ul class="steps" id="steps-{{ activity }}">
+                        {% for step in steps %}
+                            <li> {{ step }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        function toggleSteps(activity) {
+            var stepsElement = document.getElementById("steps-" + activity);
+            if (stepsElement.style.display === "none" || stepsElement.style.display === "") {
+                stepsElement.style.display = "block";
+            } else {
+                stepsElement.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
