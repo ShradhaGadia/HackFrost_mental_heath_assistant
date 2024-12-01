@@ -1,0 +1,45 @@
+id: "model-training-flow"
+namespace: "default"
+
+tasks:
+  - id: "store-data"
+    type: io.kestra.core.tasks.storages.LocalFiles
+    outputs:
+      - id: "data-file"
+        value: "./data/train.parquet"
+    files:
+      - path: "./data/train-00000-of-00001.parquet"
+        target: "./data/train.parquet"
+
+  - id: "train-model"
+    type: io.kestra.plugin.script-python.PythonScript
+    script: |
+      import torch
+      from transformers import AutoModelForCausalLM, AutoTokenizer
+      import shutil
+      import os
+
+      MODEL_PATH = "./data/model"
+      TOKENIZER_PATH = "./data/tokenizer"
+      
+      model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
+      tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_PATH)
+
+      data_path = "./data/train.parquet"
+
+      print(f"Training model with data from {data_path}")
+
+      trained_model_path = "./data/trained-model.pth"
+      model.save_pretrained(trained_model_path)
+      tokenizer.save_pretrained(trained_model_path)
+
+      print(f"Model training completed and saved to {trained_model_path}")
+
+  - id: "store-trained-model"
+    type: io.kestra.core.tasks.storages.LocalFiles
+    outputs:
+      - id: "trained-model"
+        value: "./data/trained-model.pth"
+    files:
+      - path: "./data/trained-model.pth"
+        target: "./data/trained-model.pth"
