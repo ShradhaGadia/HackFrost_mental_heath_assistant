@@ -13,9 +13,13 @@
 
 ## **Tech Stack**
 **Frontend**: HTML, CSS, Bootstrap
+
 **Backend**: Django (Python)
-**A**I: Hugging Face Transformers models
+
+**AI**: Hugging Face Transformers models
+
 **Task Management**: Task organization and tracking features
+
 **Mood Tracking**: Graph-based visualization of mood patterns
 
 
