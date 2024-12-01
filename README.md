@@ -27,8 +27,8 @@
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/yourusername/therapy-ai-app.git
-   cd therapy-ai-app
+   git clone https://github.com/ShradhaGadia/HackFrost_mental_heath
+   cd mental-health
    ```
 
 2. Install dependencies:
