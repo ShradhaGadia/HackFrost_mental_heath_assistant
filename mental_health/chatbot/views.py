@@ -14,8 +14,8 @@ from transformers import pipeline
 
 
 # Define the path to the model and tokenizer
-MODEL_PATH = r'C:\Users\astha\Downloads\mental_health_bot_trained'
-TOKENIZER_PATH = r'C:\Users\astha\Downloads\mental_health_bot_trained'
+MODEL_PATH = r'rish3/therapist-ai'
+TOKENIZER_PATH = r'rish3/therapist-ai'
 
 Quotes=["'Our wounds are often the openings into the best and most beautiful part of us.' — David Richo",
 "'Talk to yourself like you would to someone you love.' — Brené Brown",
