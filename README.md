@@ -81,10 +81,6 @@ To deploy to production, follow the deployment guide for platforms like Heroku o
 4. Push the changes to your branch (`git push origin feature-name`).
 5. Submit a pull request.
 
-## **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## **Acknowledgments**
 
 - **Hugging Face**: For providing transformer models for AI therapy.
