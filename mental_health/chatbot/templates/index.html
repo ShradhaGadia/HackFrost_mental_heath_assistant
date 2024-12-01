@@ -7,45 +7,109 @@
     <title>Chatbot</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <style>
-    .mood-link {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        font-size: 1.2em;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
+        /* Chatbox container */
+        .chat-container {
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
 
-    .mood-link:hover {
-        background-color: #0056b3;
-    }
-    .activity-link {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        font-size: 1.2em;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
+        /* Chat bubble */
+        .chat-bubble {
+            background-color: #f1f1f1;
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            max-width: 80%;
+            word-wrap: break-word;
+            display: inline-block;
+            white-space: pre-wrap; /* Ensures text wraps if too long */
+        }
 
-    .activity-link:hover {
-        background-color: #0056b3;
-    }
+        /* User input section */
+        #user-input {
+            width: calc(100% - 130px); /* Adjust width so the 'Send' button fits */
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Send button */
+        #send-btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        #send-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Buttons at the bottom */
+        .mood-link, .activity-link {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .mood-link:hover, .activity-link:hover {
+            background-color: #0056b3;
+        }
+
+        /* Flexbox layout for chat */
+        .chat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .chat-box > div {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .chat-container {
+                padding: 15px;
+            }
+            #user-input {
+                width: calc(100% - 100px);
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Bot</h1>
-    <div id="chat-box"></div>
-    <input type="text" id="user-input" placeholder="Type your message...">
-    <button id="send-btn">Send</button>
-    <a href="/mood_graph" class="mood-link">Mood Graph</a>
-    <a href="/activities" class="activity-link" >Activities</a>
+    <div class="chat-container">
+        <h1>Chatbot</h1>
+        <div class="chat-box" id="chat-box">
+            <!-- Dynamically generated chat bubbles will go here -->
+        </div>
+        <div>
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-btn">Send</button>
+        </div>
+        <a href="/mood_graph" class="mood-link">Mood Graph</a>
+        <a href="/activities" class="activity-link">Activities</a>
+    </div>
+
     <script src="{% static 'script.js' %}"></script>
 </body>
 </html>

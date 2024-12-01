@@ -5,35 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activities</title>
     <style>
+        /* General body styling */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f3f9fd, #e4e4f9);
             margin: 0;
             padding: 0;
+            color: #333;
         }
 
+        /* Container for tasks */
         .container {
             max-width: 800px;
             margin: 20px auto;
             background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
+        /* Heading styling */
         h1 {
-            text-align: center;
             font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
+        /* Activity list styling */
         .activity-list {
             list-style: none;
             padding: 0;
+            margin: 0;
+            text-align: left;
         }
 
         .activity-item {
             margin: 15px 0;
             font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
 
         .activity-item a {
@@ -41,45 +51,73 @@
             color: #007bff;
             font-weight: bold;
             cursor: pointer;
+            transition: color 0.3s ease;
         }
 
         .activity-item a:hover {
             color: #0056b3;
         }
 
+        /* Steps styling */
         .steps {
-            display: none; /* Initially hide steps */
+            display: none;
             padding-left: 20px;
             margin-top: 10px;
-            list-style-type: decimal;
+            list-style-type: none;
         }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        .steps li {
+            margin: 8px 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
         }
 
-        .back-link:hover {
-            background-color: #0056b3;
+        .steps input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        /* Completed step styling */
+        .steps .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .activity-item {
+                font-size: 1rem;
+            }
+
+            .steps li {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Tasks to lighten mood</h1>
+        <h1>Tasks to Lighten Your Mood</h1>
         <ul class="activity-list">
             {% for activity, steps in activities.items %}
                 <li class="activity-item">
-                    <a href="javascript:void(0)" onclick="toggleSteps('{{ activity }}')">{{ activity }}</a>
+                    <a href="javascript:void(0)" onclick="toggleSteps('{{ activity }}')">
+                        &#9656; {{ activity }}
+                    </a>
                     <ul class="steps" id="steps-{{ activity }}">
                         {% for step in steps %}
-                            <li> {{ step }}</li>
+                            <li>
+                                <input type="checkbox" onchange="markCompleted(this)">
+                                <span>{{ step }}</span>
+                            </li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -88,14 +126,31 @@
     </div>
 
     <script>
+        // Function to toggle visibility of steps
         function toggleSteps(activity) {
-            var stepsElement = document.getElementById("steps-" + activity);
+            const stepsElement = document.getElementById("steps-" + activity);
+            const linkElement = event.target;
+
             if (stepsElement.style.display === "none" || stepsElement.style.display === "") {
                 stepsElement.style.display = "block";
+                linkElement.innerHTML = "&#9662; " + activity; // Change icon to downward arrow
             } else {
                 stepsElement.style.display = "none";
+                linkElement.innerHTML = "&#9656; " + activity; // Change icon to right arrow
+            }
+        }
+
+        // Function to mark a task as completed
+        function markCompleted(checkbox) {
+            const stepText = checkbox.nextElementSibling;
+
+            if (checkbox.checked) {
+                stepText.classList.add("completed");
+            } else {
+                stepText.classList.remove("completed");
             }
         }
     </script>
 </body>
 </html>
+
